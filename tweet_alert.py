@@ -1,4 +1,5 @@
 import tweepy
+import time
 import smtplib
 from email.mime.text import MIMEText
 
@@ -12,8 +13,12 @@ a_secret = 'access token secret'
 class MyStreamListener(tweepy.StreamListener):
     
     def on_status(self, data):
-        print(data)
-        return True
+        try:
+            print(data)
+            return True
+        except BaseException as e:
+            print(e)
+            time.sleep(5)
     
     def on_error(self, status):
         print(status)
