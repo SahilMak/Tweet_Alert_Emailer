@@ -14,7 +14,9 @@ class MyStreamListener(tweepy.StreamListener):
     
     def on_status(self, data):
         try:
-            print(data)
+            # Extract tweet
+            tweet = data.text.split(", 'text': '")[0].split("', 'is_quote_status'")[0]
+            print(tweet)
             return True
         except BaseException as e:
             print(e)
