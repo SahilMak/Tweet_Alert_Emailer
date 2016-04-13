@@ -2,6 +2,7 @@ import tweepy
 import time
 import smtplib
 from email.mime.text import MIMEText
+from email.MIMEMultipart import MIMEMultipart
 
 c_key = 'consumer key'
 c_secret = 'consumer secret'
