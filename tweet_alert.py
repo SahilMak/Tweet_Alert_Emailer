@@ -70,11 +70,14 @@ class send_gmail():
         server.sendmail(e_address, e_address, text)
         server.quit
 
-# Prompt user for keyword
+# Prompt for number of keywords
 root = tkinter.Tk()
 root.withdraw()
-keyword = []
-keyword.append(tkinter.simpledialog.askstring('Keyword', 'Enter keyword'))
+num = tkinter.simpledialog.askinteger('Number of keywords', 'Enter number of keywords')
+# Prompt for keywords
+keywords = []
+for i in range(num):
+    keywords.append(tkinter.simpledialog.askstring('Keyword', 'Enter keyword'))
 # Create authentication handler
 auth = tweepy.OAuthHandler(c_key, c_secret)
 # Set access token
@@ -82,4 +85,4 @@ auth.set_access_token(a_token, a_secret)
 # Create the Twitter stream
 stream = tweepy.Stream(auth, MyStreamListener())
 # Search for keyword
-stream.filter(track=[keyword])
+stream.filter(track=keywords)
