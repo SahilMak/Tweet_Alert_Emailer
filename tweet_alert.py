@@ -37,7 +37,11 @@ class MyStreamListener(tweepy.StreamListener):
 class send_gmail():
     
     def __init__(self, text, ID, user, username):
-        #stuff here
+        # Create message header
+        msg = MIMEMultipart()
+        msg['From'] = e_address
+        msg['To'] = e_address
+        msg['Subject'] = "Tweet Alert"
 
 # Prompt user for keyword
 root = tkinter.Tk()
