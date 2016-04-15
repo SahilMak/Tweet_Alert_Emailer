@@ -11,6 +11,9 @@ c_secret = 'consumer secret'
 a_token = 'access token'
 a_secret = 'access token secret'
 
+e_address = 'email address'
+e_password = 'email password'
+
 class MyStreamListener(tweepy.StreamListener):
     
     def on_status(self, data):
@@ -21,8 +24,8 @@ class MyStreamListener(tweepy.StreamListener):
             tweetID = data.id_str
             # Extract name
             name = data.author.name
-            # Extract user name
-            username = data.author.screen_name
+            # Extract screen name
+            screen_name = data.author.screen_name
             return True
         except BaseException as e:
             print(e)
@@ -30,6 +33,11 @@ class MyStreamListener(tweepy.StreamListener):
     
     def on_error(self, status):
         print(status)
+
+class send_gmail():
+    
+    def __init__(self, text, ID, user, username):
+        #stuff here
 
 # Prompt user for keyword
 keyword = []
