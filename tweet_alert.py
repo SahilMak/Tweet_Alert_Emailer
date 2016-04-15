@@ -40,6 +40,8 @@ class send_gmail():
         #stuff here
 
 # Prompt user for keyword
+root = tkinter.Tk()
+root.withdraw()
 keyword = []
 keyword.append(tkinter.simpledialog.askstring('Keyword', 'Enter keyword'))
 # Create authentication handler
