@@ -42,6 +42,18 @@ class send_gmail():
         msg['From'] = e_address
         msg['To'] = e_address
         msg['Subject'] = "Tweet Alert"
+        
+        # Draft message body
+        html = """\
+        <html>
+            <head></head>
+            <body>
+                <p>%s (@%s) has tweeted:<br>
+                    %s
+                </p>
+            </body>
+        </html>
+        """ % (user, username, text)
 
 # Prompt user for keyword
 root = tkinter.Tk()
