@@ -26,6 +26,8 @@ class MyStreamListener(tweepy.StreamListener):
             name = data.author.name
             # Extract screen name
             screen_name = data.author.screen_name
+            # Send gmail
+            s = send_gmail(tweet, tweetID, name, screen_name)
             return True
         except BaseException as e:
             print(e)
@@ -42,7 +44,6 @@ class send_gmail():
         msg['From'] = e_address
         msg['To'] = e_address
         msg['Subject'] = "Tweet Alert"
-        
         # Draft message body
         html = """\
         <html>
@@ -54,6 +55,17 @@ class send_gmail():
             </body>
         </html>
         """ % (user, username, text)
+        # Attach body to email
+        msg.attach(MIMEText(html, 'html'))
+        # Define server
+        server = smtplib.SMTP('smtp.gmail.com', 587) #or 465
+        server.starttls()
+        # Login to email account
+        server.login(e_address, e_password)
+        # Send email
+        text = msg.as_string()
+        server.sendmail(e_address, e_address, text)
+        server.quit
 
 # Prompt user for keyword
 root = tkinter.Tk()
