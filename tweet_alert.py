@@ -1,6 +1,8 @@
 import tweepy
 import time
 import smtplib
+import tkinter
+import tkinter.simpledialog
 from email.mime.text import MIMEText
 from email.MIMEMultipart import MIMEMultipart
 
@@ -8,8 +10,6 @@ c_key = 'consumer key'
 c_secret = 'consumer secret'
 a_token = 'access token'
 a_secret = 'access token secret'
-
-# Prompt user for keyword
 
 class MyStreamListener(tweepy.StreamListener):
     
@@ -31,6 +31,9 @@ class MyStreamListener(tweepy.StreamListener):
     def on_error(self, status):
         print(status)
 
+# Prompt user for keyword
+keyword = []
+keyword.append(tkinter.simpledialog.askstring('Keyword', 'Enter keyword'))
 # Create authentication handler
 auth = tweepy.OAuthHandler(c_key, c_secret)
 # Set access token
