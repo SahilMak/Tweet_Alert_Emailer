@@ -21,6 +21,8 @@ class MyStreamListener(tweepy.StreamListener):
             tweetID = data.id_str
             # Extract name
             name = data.author.name
+            # Extract user name
+            username = data.author.screen_name
             return True
         except BaseException as e:
             print(e)
