@@ -44,17 +44,20 @@ class send_gmail():
         msg['From'] = e_address
         msg['To'] = e_address
         msg['Subject'] = "Tweet Alert"
+        # Create hyperlink
+        link = "https://twitter.com/" + str(username) + "/status/" + str(ID)
         # Draft message body
         html = """\
         <html>
             <head></head>
             <body>
                 <p>%s (@%s) has tweeted:<br>
-                    %s
+                    %s<br>
+                    <a href=%s>%s</a>
                 </p>
             </body>
         </html>
-        """ % (user, username, text)
+        """ % (user, username, text, link, link)
         # Attach body to email
         msg.attach(MIMEText(html, 'html'))
         # Define server
